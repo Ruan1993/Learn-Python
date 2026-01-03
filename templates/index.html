@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Geo-Python Academy</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="dashboard-header">
+            <h1>🌍 Geo-Python Academy</h1>
+            <p>Geography BSc ➝ Data Analyst Pipeline</p>
+            
+            <div class="stats-bar">
+                <div class="stat">
+                    <span>Level:</span> <strong id="userLevel">Beginner</strong>
+                </div>
+                <div class="stat">
+                    <span>XP:</span> <strong id="userXP">0</strong>
+                </div>
+            </div>
+        </header>
+
+        <div class="grid">
+            {% for lesson in lessons %}
+            <a href="/lesson/{{ lesson.id }}" class="card" id="lesson-card-{{ lesson.id }}">
+                <div class="card-header">
+                    <span class="badge">Level {{ lesson.id }}</span>
+                    {% if lesson.id == 1 %}
+                        <span class="status unlocked">🔓 Open</span>
+                    {% else %}
+                        <span class="status locked" id="status-{{ lesson.id }}">🔒 Locked</span>
+                    {% endif %}
+                </div>
+                <h2>{{ lesson.title }}</h2>
+                <div class="progress-indicator"></div>
+            </a>
+            {% endfor %}
+        </div>
+        
+        <div class="achievements-section">
+            <h3>🏆 Achievements</h3>
+            <div class="badges" id="badgeContainer">
+                <div class="achievement locked">🌱 Hello World</div>
+                <div class="achievement locked">🗺️ Mapper</div>
+                <div class="achievement locked">📊 The Analyst</div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+:root {
+    --bg-dark: #0f172a;
+    --bg-card: #1e293b;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent: #38bdf8;
+    --success: #22c55e;
+    --code-bg: #0d1117;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    margin: 0;
+}
+
+/* Dashboard */
+.container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+
+.card {
+    background: var(--bg-card);
+    padding: 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: white;
+    border: 1px solid #334155;
+    transition: transform 0.2s;
+}
+.card:hover { transform: translateY(-5px); border-color: var(--accent); }
+
+.locked { opacity: 0.5; pointer-events: none; }
+.status.unlocked { color: var(--success); font-weight: bold; font-size: 0.8rem; }
+.status.locked { color: var(--text-secondary); font-size: 0.8rem; }
+
+/* Lesson Page Layout */
+.lesson-body { height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+nav { padding: 15px; background: #1e293b; border-bottom: 1px solid #334155; display: flex; align-items: center; gap: 20px; }
+.back-btn { color: var(--text-secondary); text-decoration: none; }
+
+.workspace { display: flex; flex: 1; height: 100%; }
+.sidebar { width: 40%; padding: 20px; border-right: 1px solid #334155; overflow-y: auto; }
+.editor-container { width: 60%; display: flex; flex-direction: column; position: relative; }
+
+/* Code Editor */
+textarea#codeEditor {
+    flex: 1;
+    background-color: var(--code-bg);
+    color: #c9d1d9;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    padding: 20px;
+    border: none;
+    resize: none;
+    outline: none;
+}
+
+/* Run Button */
+#runBtn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: var(--success);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
+}
+#runBtn:hover { transform: scale(1.05); }
+
+/* Console */
+.console-output {
+    background: #000;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    border-left: 4px solid var(--accent);
+}
+.instruction-box { background: #334155; padding: 15px; border-radius: 8px; margin-top: 20px; }
+.hint-box { margin-top: 10px; font-size: 0.9rem; color: #fbbf24; }
+
+/* Modal */
+.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; }
+.modal-content { background: var(--bg-card); padding: 40px; border-radius: 16px; text-align: center; border: 2px solid var(--success); }

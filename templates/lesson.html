@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body class="lesson-body">
+    
+    <nav>
+        <a href="/" class="back-btn">← Back to Map</a>
+        <h3>{{ lesson.title }}</h3>
+    </nav>
+
+    <div class="workspace">
+        <div class="sidebar">
+            <div class="theory-content">
+                {{ lesson.theory | safe }}
+            </div>
+            <div class="instruction-box">
+                <h4>🎯 Mission:</h4>
+                <p>{{ lesson.instruction | safe }}</p>
+                <div class="hint-box">💡 Hint: {{ lesson.hint }}</div>
+            </div>
+            
+            <div class="console-output" id="consoleOutput">
+                <span class="console-label">Terminal Output:</span>
+                <pre id="outputHelpers">Run your code to see output...</pre>
+            </div>
+        </div>
+
+        <div class="editor-container">
+            <textarea id="codeEditor" spellcheck="false">{{ lesson.default_code }}</textarea>
+            <button id="runBtn" onclick="runCode({{ lesson.id }})">▶ Run Code</button>
+        </div>
+    </div>
+
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <h2>🎉 Level Complete!</h2>
+            <p>Output matched expected result.</p>
+            <button onclick="window.location.href='/'">Return to Map</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
